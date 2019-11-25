@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Windrivder.github.io</id>
     <title>Halo</title>
-    <updated>2019-11-25T09:29:02.968Z</updated>
+    <updated>2019-11-25T11:17:39.582Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Windrivder.github.io"/>
     <link rel="self" href="https://Windrivder.github.io/atom.xml"/>
@@ -40,6 +40,255 @@
 <p>未来，它一定会成为你离不开的伙伴</p>
 <p>尽情发挥你的才华吧！</p>
 <p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Vim 配置]]></title>
+        <id>https://Windrivder.github.io/post/Fn2Lt73Yn</id>
+        <link href="https://Windrivder.github.io/post/Fn2Lt73Yn">
+        </link>
+        <updated>2018-01-25T11:05:07.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 基本设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot; 历史记录
+set history=1000
+
+&quot; 检测文件类型
+filetype on
+
+&quot; 针对不同的文件类型采用不同的缩进格式
+filetype indent on
+
+&quot; 允许插件
+filetype plugin on
+
+&quot; 启动自动补全
+filetype plugin indent on
+
+&quot; 文件自动检测外部更改
+set autoread
+
+&quot; 隐藏援助乌干达儿童的提示
+set shortmess=atI
+
+&quot; 禁用声音与图标
+set noerrorbells
+set novisualbell
+set t_vb=
+
+&quot; 禁止生成临时文件
+set writebackup
+set nobackup
+set noswapfile
+set viminfo='100,n$HOME/.vim/viminfo
+
+&quot; 高亮显示当前行/列
+set cursorline
+&quot; set cursorcolumn
+
+&quot; 智能的当前行高亮
+&quot; autocmd InsertLeave,WinEnter * set cursorline
+&quot; autocmd InsertEnter,WinLeave * set nocursorline
+
+&quot; 退出后内容缓存在屏幕上
+&quot; set t_ti= t_te=
+
+&quot; 启用鼠标
+set mouse-=a
+&quot; set paste
+
+set backspace=eol,start,indent
+set whichwrap+=&lt;,&gt;,h,l
+set showmatch
+set nolinebreak
+
+&quot; 退出确认
+set confirm
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 界面排版设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot; 显示行号
+set number
+
+&quot; 显示当前的行号列号
+set ruler
+
+&quot; 取消换行
+&quot; set nowrap
+
+&quot; 移动光标时，上下方显示的行数
+&quot; set scrolloff=4
+
+&quot; tab相关变更
+set expandtab
+set smarttab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+&quot; 缩进配置
+set autoindent
+set smartindent
+
+&quot; buffer设置
+set hidden
+set wildmode=list:longest
+set ttyfast
+
+&quot; 搜索忽略大小写
+set ignorecase
+
+&quot; 搜索字符高亮
+set hlsearch
+
+&quot; 增量搜索模式
+set incsearch
+
+&quot; 有一个或以上大写字母时仍大小写敏感
+set smartcase
+
+&quot; 行内替换
+set gdefault
+
+&quot; 默认展开所有代码
+set foldmethod=indent
+set nofoldenable
+
+&quot; 去掉 Scrollbar
+set guioptions-=r
+set guioptions-=L
+
+&quot; 显示 tab
+set list listchars=tab:&gt;-
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 文件编码及类型设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+set encoding=utf-8
+set termencoding=utf-8
+
+&quot; autocmd FileType make set noexpandtab
+
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp,go setlocal et sta sw=4 ts=4 sts=4
+autocmd FileType javascript,html,css,xml setlocal et sta sw=2 ts=2 sts=2
+
+au BufRead,BufNewFile *.wpy setlocal filetype=javascript
+au BufRead,BufNewFile *.vue setlocal filetype=javascript
+
+autocmd BufNewFile *.sh,*.py call AutoSetFileHead()
+function! AutoSetFileHead()
+    if &amp;filetype == 'sh'
+        call setline(1, &quot;\#!/bin/bash&quot;)
+    endif
+
+    if &amp;filetype == 'python'
+        call setline(1, &quot;#!/usr/bin/env python&quot;)
+        call append(1, &quot;# -*- coding: utf-8 -*-&quot;)
+        call append(2, &quot;&quot;)
+        call append(3, &quot;from __future__ import unicode_literals&quot;)
+        call append(4, &quot;from __future__ import absolute_import&quot;)
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 其他
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot; 访问系统剪贴板
+set clipboard=unnamed
+
+&quot; 自动加载配置
+&quot;autocmd! bufwritepost .vimrc source %
+
+&quot; 自动切换工作目录
+set autochdir
+
+&quot; 自动补全配置
+set completeopt=longest,menu
+
+&quot; 增强模式中的命令行自动完成操作
+set wildmenu wildmode=full
+
+&quot; 关闭预览窗口
+set completeopt-=preview
+
+&quot; 更快的关键字补全
+set complete-=i     &quot; disable scanning included files
+set complete-=t     &quot; disable searching tags
+
+&quot; 记住上次打开的位置
+au BufReadPost * if line(&quot;'\&quot;&quot;) &gt; 0|if line(&quot;'\&quot;&quot;) &lt;= line(&quot;$&quot;)|exe(&quot;norm '\&quot;&quot;)|else|exe &quot;norm $&quot;|endif|endif
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 键位映射
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot; esc
+imap jk &lt;Esc&gt;
+
+&quot; leader
+&quot; let mapleader = &quot;\&lt;Space&gt;&quot;
+
+&quot; vim 与 shell切换
+noremap &lt;C-D&gt; :sh&lt;CR&gt;
+noremap &lt;F2&gt; :set nu!&lt;CR&gt;
+noremap &lt;F3&gt; :set paste!&lt;CR&gt;
+
+set wildchar=&lt;Tab&gt; wildcharm=&lt;C-Z&gt;
+
+&quot; 切换 buffer
+noremap gt :bp&lt;CR&gt;
+noremap gT :bn&lt;CR&gt;
+
+noremap &lt;Leader&gt;r :call RunCode()&lt;CR&gt;
+func! RunCode()
+    exec &quot;w&quot;
+    if &amp;filetype == 'java'
+        exec &quot;!javac %&quot;
+        exec &quot;!time java %&lt;&quot;
+    elseif &amp;filetype == 'sh'
+        exec &quot;!time sh %&quot;
+    elseif &amp;filetype == 'python'
+        exec &quot;!time python3 %&quot;
+    elseif &amp;filetype == 'go'
+        exec &quot;!time go run %&quot;
+    elseif &amp;filetype == 'javascript'
+        exec &quot;!time node %&quot;
+    endif
+endfunc
+
+noremap &lt;Leader&gt;f :call FormatCode()&lt;CR&gt;
+func! FormatCode()
+    exec &quot;w&quot;
+    if &amp;filetype == 'go'
+        exec &quot;!gofmt -w %&quot;
+    elseif &amp;filetype == 'python'
+
+    endif
+endfunc
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 配色
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+set t_Co=256
+&quot; colorscheme desert
+colorscheme gruvbox
+set background=dark
+hi LineNr ctermfg=245 ctermbg=235
+hi CursorLine ctermbg=235 cterm=NONE guibg=Grey40
+syntax on
+
+</code></pre>
 ]]></content>
     </entry>
     <entry>

@@ -2,26 +2,66 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Windrivder.github.io</id>
     <title>Halo</title>
-    <updated>2019-11-25T11:17:39.582Z</updated>
+    <updated>2020-03-07T02:10:28.474Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Windrivder.github.io"/>
     <link rel="self" href="https://Windrivder.github.io/atom.xml"/>
     <subtitle>愿你在冷铁卷刃前，得以窥见天光。</subtitle>
     <logo>https://Windrivder.github.io/images/avatar.png</logo>
     <icon>https://Windrivder.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, Halo</rights>
+    <rights>All rights reserved 2020, Halo</rights>
+    <entry>
+        <title type="html"><![CDATA[LeetCode - 两数之和]]></title>
+        <id>https://Windrivder.github.io/post/93-d2A10n/</id>
+        <link href="https://Windrivder.github.io/post/93-d2A10n/">
+        </link>
+        <updated>2019-11-25T11:32:52.000Z</updated>
+        <content type="html"><![CDATA[<p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
+<p>示例:</p>
+<pre><code>给定 nums = [2, 7, 11, 15], target = 9
+
+因为 nums[0] + nums[1] = 2 + 7 = 9
+所以返回 [0, 1]
+</code></pre>
+<p>题解:</p>
+<p>python</p>
+<pre><code class="language-python">class Solution:
+    def twoSum(self, nums: List[int], target: int) -&gt; List[int]:
+        lookup = {}
+        for index, num in enumerate(nums):
+            other_num = target - num
+            if other_num in lookup:
+                return lookup.get(other_num, 0), index
+            else:
+                lookup[num] = index
+</code></pre>
+<p>go</p>
+<pre><code class="language-go">func twoSum(nums []int, target int) []int {
+    maps := make(map[int]int)
+    result := make([]int, 0)
+    for index, num := range nums {
+        _, isTrue := maps[target - num]
+        if isTrue {
+            result = append(result, maps[target - num])
+            result = append(result, index)
+            break
+        }
+        maps[num] = index
+    }
+    return result
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://Windrivder.github.io/post/MVCYuKMgH</id>
-        <link href="https://Windrivder.github.io/post/MVCYuKMgH">
+        <id>https://Windrivder.github.io/post/MVCYuKMgH/</id>
+        <link href="https://Windrivder.github.io/post/MVCYuKMgH/">
         </link>
         <updated>2019-11-18T14:54:27.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
         <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
 <p><a href="https://github.com/getgridea/gridea">Github</a><br>
 <a href="https://gridea.dev/">Gridea 主页</a><br>
 <a href="http://fehey.com/">示例网站</a></p>
@@ -44,8 +84,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Vim 配置]]></title>
-        <id>https://Windrivder.github.io/post/Fn2Lt73Yn</id>
-        <link href="https://Windrivder.github.io/post/Fn2Lt73Yn">
+        <id>https://Windrivder.github.io/post/Fn2Lt73Yn/</id>
+        <link href="https://Windrivder.github.io/post/Fn2Lt73Yn/">
         </link>
         <updated>2018-01-25T11:05:07.000Z</updated>
         <content type="html"><![CDATA[<pre><code>&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
@@ -293,8 +333,8 @@ syntax on
     </entry>
     <entry>
         <title type="html"><![CDATA[Git 命令总结]]></title>
-        <id>https://Windrivder.github.io/post/md6tTOAUN</id>
-        <link href="https://Windrivder.github.io/post/md6tTOAUN">
+        <id>https://Windrivder.github.io/post/md6tTOAUN/</id>
+        <link href="https://Windrivder.github.io/post/md6tTOAUN/">
         </link>
         <updated>2017-03-28T09:25:47.000Z</updated>
         <content type="html"><![CDATA[<h2 id="基本命令">基本命令</h2>
@@ -520,8 +560,8 @@ git config --global alias.lg &quot;log --color --graph --pretty=format:'%Cred%h%
     </entry>
     <entry>
         <title type="html"><![CDATA[优雅的 Python]]></title>
-        <id>https://Windrivder.github.io/post/y_MY6rOKQ</id>
-        <link href="https://Windrivder.github.io/post/y_MY6rOKQ">
+        <id>https://Windrivder.github.io/post/y_MY6rOKQ/</id>
+        <link href="https://Windrivder.github.io/post/y_MY6rOKQ/">
         </link>
         <updated>2017-03-27T09:15:34.000Z</updated>
         <content type="html"><![CDATA[<h2 id="参考资料">参考资料</h2>
@@ -572,7 +612,7 @@ if arr:
 if values:
     do_something()
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://pic1.zhimg.com/v2-eb4e447e9946e24d6a72f9cb1e50cc00_b.png" alt="img"></figure>
+<figure data-type="image" tabindex="1"><img src="https://pic1.zhimg.com/v2-eb4e447e9946e24d6a72f9cb1e50cc00_b.png" alt="img" loading="lazy"></figure>
 <h2 id="列表">列表</h2>
 <pre><code class="language-python"># 列表推导式
 [i * 2 for i in range(6)]	# 可以取代 map 和 filter

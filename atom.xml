@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Windrivder.github.io</id>
     <title>Halo</title>
-    <updated>2020-03-07T02:10:28.474Z</updated>
+    <updated>2020-04-25T12:19:04.129Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Windrivder.github.io"/>
     <link rel="self" href="https://Windrivder.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, Halo</rights>
     <entry>
         <title type="html"><![CDATA[LeetCode - 两数之和]]></title>
-        <id>https://Windrivder.github.io/post/93-d2A10n/</id>
-        <link href="https://Windrivder.github.io/post/93-d2A10n/">
+        <id>https://Windrivder.github.io/93-d2A10n/</id>
+        <link href="https://Windrivder.github.io/93-d2A10n/">
         </link>
         <updated>2019-11-25T11:32:52.000Z</updated>
         <content type="html"><![CDATA[<p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
@@ -56,8 +56,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://Windrivder.github.io/post/MVCYuKMgH/</id>
-        <link href="https://Windrivder.github.io/post/MVCYuKMgH/">
+        <id>https://Windrivder.github.io/MVCYuKMgH/</id>
+        <link href="https://Windrivder.github.io/MVCYuKMgH/">
         </link>
         <updated>2019-11-18T14:54:27.000Z</updated>
         <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
@@ -84,8 +84,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Vim 配置]]></title>
-        <id>https://Windrivder.github.io/post/Fn2Lt73Yn/</id>
-        <link href="https://Windrivder.github.io/post/Fn2Lt73Yn/">
+        <id>https://Windrivder.github.io/Fn2Lt73Yn/</id>
+        <link href="https://Windrivder.github.io/Fn2Lt73Yn/">
         </link>
         <updated>2018-01-25T11:05:07.000Z</updated>
         <content type="html"><![CDATA[<pre><code>&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
@@ -333,8 +333,8 @@ syntax on
     </entry>
     <entry>
         <title type="html"><![CDATA[Git 命令总结]]></title>
-        <id>https://Windrivder.github.io/post/md6tTOAUN/</id>
-        <link href="https://Windrivder.github.io/post/md6tTOAUN/">
+        <id>https://Windrivder.github.io/md6tTOAUN/</id>
+        <link href="https://Windrivder.github.io/md6tTOAUN/">
         </link>
         <updated>2017-03-28T09:25:47.000Z</updated>
         <content type="html"><![CDATA[<h2 id="基本命令">基本命令</h2>
@@ -560,8 +560,8 @@ git config --global alias.lg &quot;log --color --graph --pretty=format:'%Cred%h%
     </entry>
     <entry>
         <title type="html"><![CDATA[优雅的 Python]]></title>
-        <id>https://Windrivder.github.io/post/y_MY6rOKQ/</id>
-        <link href="https://Windrivder.github.io/post/y_MY6rOKQ/">
+        <id>https://Windrivder.github.io/y_MY6rOKQ/</id>
+        <link href="https://Windrivder.github.io/y_MY6rOKQ/">
         </link>
         <updated>2017-03-27T09:15:34.000Z</updated>
         <content type="html"><![CDATA[<h2 id="参考资料">参考资料</h2>

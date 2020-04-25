@@ -1,0 +1,458 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>优雅的 Python | Halo</title>
+<meta name="description" content="愿你在冷铁卷刃前，得以窥见天光。" />
+<link rel="shortcut icon" href="https://Windrivder.github.io/favicon.ico?v=1587817128216">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://Windrivder.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Windrivder.github.io">
+  <img class="avatar" src="https://Windrivder.github.io/images/avatar.png?v=1587817128216" alt="">
+  </a>
+  <h1 class="site-title">
+    Halo
+  </h1>
+  <p class="site-description">
+    愿你在冷铁卷刃前，得以窥见天光。
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/books" class="menu">
+          阅读
+        </a>
+      
+    
+      
+        <a href="/movies" class="menu">
+          观影
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              优雅的 Python
+            </h2>
+            <div class="post-info">
+              <span>
+                2017-03-27
+              </span>
+              <span>
+                7 min read
+              </span>
+              
+                <a href="https://Windrivder.github.io/0mn1mpd9n/" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://images.unsplash.com/photo-1572286924907-e40fcaf1dcb3?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="参考资料">参考资料</h2>
+<ol>
+<li><a href="http://www.tuicool.com/articles/mQbqYfn">代码这样写不止于优雅（Python版） - 推酷</a></li>
+<li><a href="http://python.jobbole.com/86808/">编写高效且优雅的 Python 代码（1） - Python - 伯乐在线</a></li>
+<li><a href="https://www.zhihu.com/question/37751951">Python 有哪些优雅的代码实现？让自己的代码更pythonic</a></li>
+</ol>
+<h2 id="基础语法">基础语法</h2>
+<pre><code class="language-python"># 尽可能少地引入变量
+a, b = b, a	# 变量交换
+
+
+# 赋值技巧
+colors = 'red', 'green', 'blue', 'yellow'
+red, green, blue, yellow = colors	# 适用于列表、元组等
+
+
+# 字符串格式化
+s = &quot;Welcome to {blog} and following {wechat}&quot;.format(blog=&quot;Windrivder.me&quot;, wechat=&quot;Windrivder&quot;)
+
+
+# 字符串连接
+colors = ['red', 'green', 'blue', 'yellow']
+print('- '.join(colors))	# join() 在内存中只会产生一个字符串对象
+
+
+# if/else 三目运算
+text = '男' if gener = 'male' else '女'
+
+
+# for/else 语句
+for i in mylist:
+    pass
+else:	# else 会在 for 循环遍历结束后执行
+    pass
+
+
+# 链式比较
+age = 19
+if 18 &lt; age &lt; 60:
+    print('Youg man')
+
+
+# 判断真值
+if arr:
+    do_something()
+if values:
+    do_something()
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://pic1.zhimg.com/v2-eb4e447e9946e24d6a72f9cb1e50cc00_b.png" alt="img" loading="lazy"></figure>
+<h2 id="列表">列表</h2>
+<pre><code class="language-python"># 列表推导式
+[i * 2 for i in range(6)]	# 可以取代 map 和 filter
+# 同时列表推导式会消耗大量内存，数据多时建议使用生成器表达式
+list = (x ** 2 for x in range(0, 100000))
+
+
+# list 是一个查询效率高于更新操作的数据结构，可适当考虑使用双向队列
+from collections import deque
+names = deque(['Jack', 'King', 'Betty', 'Windrivder'])	# 双向队形
+names.popleft()
+names.appendleft('Hello')
+
+
+# 切片
+items = range(10)
+sub_items = items[1:4] # list[start:end:step]
+odd_items = items[1::2]
+copy_items = items[:] # 复制
+reverse_items = items[::-1]	# 反序
+item = items[0:-1]
+--------------------------
+ | P | y | t | h | o | n |
+--------------------------
+   0   1   2   3   4   5 
+  -6  -5  -4  -3  -2  -1
+--------------------------
+</code></pre>
+<h2 id="字典">字典</h2>
+<pre><code class="language-python"># 获取字典元素
+d = {'name': 'windrivder'}
+d.get('name', 'jack')	# 第二个参数设置默认值
+
+
+# 预设字典默认值
+data = [('foo', 10), ('bar', 20), ('foo', 39), ('bar', 49)]
+groups = {}
+for (key, value) in data:	# 方式一
+    groups.setdefault(key, []).append(value)
+
+
+from collections import defaultdict	# 方式二
+groups = defaultdict(list)
+for (key, value) in data:
+    groups[key].append(value)
+# 字典推导式
+numbers = [1, 2, 3]
+my_dict = {number: number * 2 for number in numbers}
+my_dict = {number: number * 2 for number in numbers if number &gt; 1}
+
+
+# 遍历字典的 key 和 value
+for k, v in d.items():
+    print(k, '--&gt;', v)
+</code></pre>
+<h2 id="生成器">生成器</h2>
+<pre><code class="language-python"># 生成器比列表更加节省内存
+for i in range(6):
+    print(i)
+
+
+# 生成器无需一次性加载所有元素到内存
+def fib(n):
+    a, b = 0, 1
+    while a &lt; n:
+        yield a
+        a, b = b, a + b
+l = [i for i in fib(10)] # 列表会一次性把全部元素加载到内存中
+</code></pre>
+<h2 id="遍历">遍历</h2>
+<pre><code class="language-python"># 带有索引位置的集合遍历
+colors = ['red', 'green', 'blue', 'yellow']
+for i, color in enumerate(colors):	# 传入第二个参数时迭代时加在 index 上的数值
+    print(i, '--&gt;', color);
+
+
+# 用 zip 同时遍历两个迭代器
+list_a = ['a', 'b', 'c', 'd']
+list_b = [1, 2, 3]
+for letter, number in zip(list_a, list_b):
+    print(letter, number)	# 只要有一个列表耗尽，迭代就会停止
+# zip 遍历时返回一个元组
+a = [1, 2, 3]
+b = ['w', 'x', 'y', 'z']
+for i in zip(a, b):
+    print(i)
+
+
+list_example = [i for i in range(5)]
+iter_example = (i for i in range(5)) # 迭代器
+set_example = {i for i in range(5)} # 集合
+
+
+for i in reversed(list_example):	# 只能迭代 list，无法作用于集合和迭代器
+    print(i)
+# 反向迭代还可以在类里的 __reversed__ 方法实现
+class Countdown:
+    def __init__(self, start):
+        self.start = start
+    # 正向迭代
+    def __iter__(self):
+        n = self.start
+        while n &gt; 0:
+            yield n
+            n -= 1
+    # 反向迭代
+    def __reversed__(self):
+        n = 1
+        while n &lt;= self.start:
+            yield n
+            n += 1
+</code></pre>
+<h2 id="装饰器">装饰器</h2>
+<pre><code class="language-python"># 利用装饰器将与业务逻辑无关的代码抽离出来，同时可以在多个地方重复利用
+def web_lookup(url, saved={}):
+    if url in saved:
+        return saved[url]
+    page = urllib.urlopen(url).read()
+    saved[url] = page
+    return page
+# Pythonic
+import urllib.request as urllib	# Python 2.x: import urllib
+import functools
+def cache(func):
+    saved = {}
+    @functools.wraps(func)	# 以原函数为参数，保留原函数的各种信息
+    def wrapper(url):
+        if url in saved:
+            return saved[url]
+        else:
+            page = func[url]
+            saved[url] = page
+            return page
+    return wrapper
+@cache
+def web_lookup(url):
+    return urllib.urlopen(url).read()
+# 为已有函数增加 log 监控
+def decorator_fun(fun):
+    @functools.wraps(fun)
+    def wrapper(*args, **kw):
+        print('Current fun: ', fun.__name__)
+        print('Position arguments: ', args)
+        print('Key arguments: ', **kw)
+        result = fun(*args, **kw)
+        print(result)
+    return wrapper
+@decorator_fun
+def add(a, b):
+    return a + b
+add(2, 3)
+# 在原本的装饰器的外层又嵌套一个函数，就可以编写参数的装饰器
+def read_file(filename='results.txt'):
+    def decorator_fun(func):
+        def new_fun(*args, **kw):
+            result = func(*args, **kw)
+            with open(filename, 'a') as f:
+                f.write(result + '\n')
+            return result
+        return  new_fun
+    return decorator_fun
+@read_file(filename='log.txt')
+def add(a, b):
+    return a + b
+
+
+
+# 编写类的 __call__ 方法，使类能够像函数一样的调用
+from functools import wraps
+class logResult(object):
+    def __init__(self, filename='results.txt'):
+        self.filename = filename
+    def __call__(self, func):
+        @wraps(func)
+        def new_func(*args, **kw):
+            result = func(*args, **kw)
+            with open(filename, 'a') as f:
+                f.write(result + '\n')
+            return result
+        self.send_notification()
+        return new_func
+    def send_notification(self):
+        pass
+@logResult('log.txt')
+def add(a, b):
+    return a + b
+</code></pre>
+<h2 id="上下文管理器">上下文管理器</h2>
+<pre><code class="language-python"># 上下文管理器：在代码执行前，先进行准备工作，执行完成后，再做收尾工作
+# 打开的资源记得要释放
+with open('data.txt') as f:
+    data = f.read()
+# 通过自定义类的 __enter__ 和 __exit__ 方法，可以自定义一个上下文管理器
+class ReadFile(object):
+    def __init__(self, filename):
+        self.file = open(filename, 'r')
+    def __enter__(self):
+        returnn self.file
+    def __exit__(self, type, value, traceback):
+        '''type, value, traceback 分别代表错误的类型、值、追踪栈'''
+        self.file.close()
+        return True	# 返回 True 代表不抛出错误
+
+
+with ReadFile('test.txt') as file_read:
+    for line in file_read.readlines():
+        print(line)
+# with 语句先暂存了 ReadFile 类的 __exit__ 方法
+# 然后调用 __enter__ 方法，并将结果返回给 with 语句
+# 读取完成后调用之前暂存的 __exit__ 方法，关闭了文件
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95">基础语法</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8">列表</a></li>
+<li><a href="#%E5%AD%97%E5%85%B8">字典</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E5%99%A8">生成器</a></li>
+<li><a href="#%E9%81%8D%E5%8E%86">遍历</a></li>
+<li><a href="#%E8%A3%85%E9%A5%B0%E5%99%A8">装饰器</a></li>
+<li><a href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8">上下文管理器</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '86b103ef9e07914e3775',
+    clientSecret: 'c4660abb03faec723821f38cb7d7c4d8290acc34',
+    repo: 'Windrivder.github.io',
+    owner: 'Windrivder',
+    admin: ['Windrivder'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Published with <a href="https://gridea.dev/" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://Windrivder.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

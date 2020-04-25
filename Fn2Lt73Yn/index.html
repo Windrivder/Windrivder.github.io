@@ -1,0 +1,430 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vim 配置 | Halo</title>
+<meta name="description" content="愿你在冷铁卷刃前，得以窥见天光。" />
+<link rel="shortcut icon" href="https://Windrivder.github.io/favicon.ico?v=1587817128216">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://Windrivder.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://Windrivder.github.io">
+  <img class="avatar" src="https://Windrivder.github.io/images/avatar.png?v=1587817128216" alt="">
+  </a>
+  <h1 class="site-title">
+    Halo
+  </h1>
+  <p class="site-description">
+    愿你在冷铁卷刃前，得以窥见天光。
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/books" class="menu">
+          阅读
+        </a>
+      
+    
+      
+        <a href="/movies" class="menu">
+          观影
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Vim 配置
+            </h2>
+            <div class="post-info">
+              <span>
+                2018-01-25
+              </span>
+              <span>
+                7 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://images.unsplash.com/photo-1573416104188-f661748a1237?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <pre><code>&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 基本设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot; 历史记录
+set history=1000
+
+&quot; 检测文件类型
+filetype on
+
+&quot; 针对不同的文件类型采用不同的缩进格式
+filetype indent on
+
+&quot; 允许插件
+filetype plugin on
+
+&quot; 启动自动补全
+filetype plugin indent on
+
+&quot; 文件自动检测外部更改
+set autoread
+
+&quot; 隐藏援助乌干达儿童的提示
+set shortmess=atI
+
+&quot; 禁用声音与图标
+set noerrorbells
+set novisualbell
+set t_vb=
+
+&quot; 禁止生成临时文件
+set writebackup
+set nobackup
+set noswapfile
+set viminfo='100,n$HOME/.vim/viminfo
+
+&quot; 高亮显示当前行/列
+set cursorline
+&quot; set cursorcolumn
+
+&quot; 智能的当前行高亮
+&quot; autocmd InsertLeave,WinEnter * set cursorline
+&quot; autocmd InsertEnter,WinLeave * set nocursorline
+
+&quot; 退出后内容缓存在屏幕上
+&quot; set t_ti= t_te=
+
+&quot; 启用鼠标
+set mouse-=a
+&quot; set paste
+
+set backspace=eol,start,indent
+set whichwrap+=&lt;,&gt;,h,l
+set showmatch
+set nolinebreak
+
+&quot; 退出确认
+set confirm
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 界面排版设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot; 显示行号
+set number
+
+&quot; 显示当前的行号列号
+set ruler
+
+&quot; 取消换行
+&quot; set nowrap
+
+&quot; 移动光标时，上下方显示的行数
+&quot; set scrolloff=4
+
+&quot; tab相关变更
+set expandtab
+set smarttab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+&quot; 缩进配置
+set autoindent
+set smartindent
+
+&quot; buffer设置
+set hidden
+set wildmode=list:longest
+set ttyfast
+
+&quot; 搜索忽略大小写
+set ignorecase
+
+&quot; 搜索字符高亮
+set hlsearch
+
+&quot; 增量搜索模式
+set incsearch
+
+&quot; 有一个或以上大写字母时仍大小写敏感
+set smartcase
+
+&quot; 行内替换
+set gdefault
+
+&quot; 默认展开所有代码
+set foldmethod=indent
+set nofoldenable
+
+&quot; 去掉 Scrollbar
+set guioptions-=r
+set guioptions-=L
+
+&quot; 显示 tab
+set list listchars=tab:&gt;-
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 文件编码及类型设置
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+set encoding=utf-8
+set termencoding=utf-8
+
+&quot; autocmd FileType make set noexpandtab
+
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp,go setlocal et sta sw=4 ts=4 sts=4
+autocmd FileType javascript,html,css,xml setlocal et sta sw=2 ts=2 sts=2
+
+au BufRead,BufNewFile *.wpy setlocal filetype=javascript
+au BufRead,BufNewFile *.vue setlocal filetype=javascript
+
+autocmd BufNewFile *.sh,*.py call AutoSetFileHead()
+function! AutoSetFileHead()
+    if &amp;filetype == 'sh'
+        call setline(1, &quot;\#!/bin/bash&quot;)
+    endif
+
+    if &amp;filetype == 'python'
+        call setline(1, &quot;#!/usr/bin/env python&quot;)
+        call append(1, &quot;# -*- coding: utf-8 -*-&quot;)
+        call append(2, &quot;&quot;)
+        call append(3, &quot;from __future__ import unicode_literals&quot;)
+        call append(4, &quot;from __future__ import absolute_import&quot;)
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 其他
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot; 访问系统剪贴板
+set clipboard=unnamed
+
+&quot; 自动加载配置
+&quot;autocmd! bufwritepost .vimrc source %
+
+&quot; 自动切换工作目录
+set autochdir
+
+&quot; 自动补全配置
+set completeopt=longest,menu
+
+&quot; 增强模式中的命令行自动完成操作
+set wildmenu wildmode=full
+
+&quot; 关闭预览窗口
+set completeopt-=preview
+
+&quot; 更快的关键字补全
+set complete-=i     &quot; disable scanning included files
+set complete-=t     &quot; disable searching tags
+
+&quot; 记住上次打开的位置
+au BufReadPost * if line(&quot;'\&quot;&quot;) &gt; 0|if line(&quot;'\&quot;&quot;) &lt;= line(&quot;$&quot;)|exe(&quot;norm '\&quot;&quot;)|else|exe &quot;norm $&quot;|endif|endif
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 键位映射
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot; esc
+imap jk &lt;Esc&gt;
+
+&quot; leader
+&quot; let mapleader = &quot;\&lt;Space&gt;&quot;
+
+&quot; vim 与 shell切换
+noremap &lt;C-D&gt; :sh&lt;CR&gt;
+noremap &lt;F2&gt; :set nu!&lt;CR&gt;
+noremap &lt;F3&gt; :set paste!&lt;CR&gt;
+
+set wildchar=&lt;Tab&gt; wildcharm=&lt;C-Z&gt;
+
+&quot; 切换 buffer
+noremap gt :bp&lt;CR&gt;
+noremap gT :bn&lt;CR&gt;
+
+noremap &lt;Leader&gt;r :call RunCode()&lt;CR&gt;
+func! RunCode()
+    exec &quot;w&quot;
+    if &amp;filetype == 'java'
+        exec &quot;!javac %&quot;
+        exec &quot;!time java %&lt;&quot;
+    elseif &amp;filetype == 'sh'
+        exec &quot;!time sh %&quot;
+    elseif &amp;filetype == 'python'
+        exec &quot;!time python3 %&quot;
+    elseif &amp;filetype == 'go'
+        exec &quot;!time go run %&quot;
+    elseif &amp;filetype == 'javascript'
+        exec &quot;!time node %&quot;
+    endif
+endfunc
+
+noremap &lt;Leader&gt;f :call FormatCode()&lt;CR&gt;
+func! FormatCode()
+    exec &quot;w&quot;
+    if &amp;filetype == 'go'
+        exec &quot;!gofmt -w %&quot;
+    elseif &amp;filetype == 'python'
+
+    endif
+endfunc
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; 配色
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+set t_Co=256
+&quot; colorscheme desert
+colorscheme gruvbox
+set background=dark
+hi LineNr ctermfg=245 ctermbg=235
+hi CursorLine ctermbg=235 cterm=NONE guibg=Grey40
+syntax on
+
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://Windrivder.github.io/md6tTOAUN/">
+              <h3 class="post-title">
+                Git 命令总结
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '86b103ef9e07914e3775',
+    clientSecret: 'c4660abb03faec723821f38cb7d7c4d8290acc34',
+    repo: 'Windrivder.github.io',
+    owner: 'Windrivder',
+    admin: ['Windrivder'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Published with <a href="https://gridea.dev/" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://Windrivder.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

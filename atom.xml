@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Windrivder.github.io</id>
     <title>Halo</title>
-    <updated>2020-04-25T12:53:13.655Z</updated>
+    <updated>2020-04-25T13:01:54.322Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Windrivder.github.io"/>
     <link rel="self" href="https://Windrivder.github.io/atom.xml"/>
@@ -80,6 +80,160 @@
 <p>未来，它一定会成为你离不开的伙伴</p>
 <p>尽情发挥你的才华吧！</p>
 <p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python 线程安全]]></title>
+        <id>https://Windrivder.github.io/FGrATj71-/</id>
+        <link href="https://Windrivder.github.io/FGrATj71-/">
+        </link>
+        <updated>2018-04-07T10:37:30.000Z</updated>
+        <content type="html"><![CDATA[<p>Python 解释器由于是非线程安全的，所以解释器从线程内访问 Python 对象时，会去获取一个全局的强制锁，这就是 Python 中著名的 <strong>GIL（global interpreter lock）</strong>。</p>
+<p>当多个线程同时进行，且共同修改同一个资源时，我们必须保证修改不会发生冲突，数据修改不会发生错误，也就是说，我们必须保证线程安全。</p>
+<p>由于 GIL 的加持，是不是就意味着 Python 中的多线程并发都是线程安全的呢？答案是否定。我们还需要理解另一个概念：<strong>原子操作（atomic operation）</strong>。</p>
+<p>原子操作，指不会被线程调度机制打断的操作，这种操作一旦开始，就一直运行到结束，中间不会切换到其他线程。</p>
+<p>类似于<code>num += 1</code> 语句，在多线程并发下，就不是线程安全的，因为它不是原子操作：</p>
+<pre><code class="language-python">from dis import dis
+
+a = 0
+
+def add():
+    global a
+    a = a + 1
+    
+dis(add)
+</code></pre>
+<p>执行结果如下：</p>
+<pre><code>  9           0 LOAD_GLOBAL              0 (a)
+              2 LOAD_CONST               1 (1)
+              4 BINARY_ADD
+              6 STORE_GLOBAL             0 (a)
+              8 LOAD_CONST               0 (None)
+             10 RETURN_VALUE
+</code></pre>
+<p>可以看到，Python 运行这段代码的步骤：<code>导入全局变量--&gt;导入常数--&gt;执行加法--&gt;存储变量...</code>。若在<code>BINARY_ADD</code>和<code>STORE_GLOBAL</code>之间切换了线程，那么就造成资源冲突了。</p>
+<p>那些操作是线程安全的呢，<a href="https://docs.python.org/3.5/faq/library.html#what-kinds-of-global-value-mutation-are-thread-safe">Python 文档</a>中罗列了一些，可以看下。</p>
+<pre><code class="language-python"># 线程安全
+L.append(x)
+L1.extend(L2)
+x = L[i]
+x = L.pop()
+L1[i:j] = L2
+L.sort()
+x = y
+x.field = y
+D[x] = y
+D1.update(D2)
+D.keys()
+</code></pre>
+<p>从中我们可以总结一下，如果一段程序本身就是原子操作，那么它在 Python 的运行环境中，自动实现了线程安全，也就不需要上锁了。</p>
+<p>值得注意的是，标准库中关于队列的实现，<code>Queue.Queue</code>内部实现<code>Condition</code>锁，主要用于线程之间的通信。而<code>collections.deque</code>和<code>list</code>是单纯存储数据的。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python 魔术方法]]></title>
+        <id>https://Windrivder.github.io/8IaGL3ZNY/</id>
+        <link href="https://Windrivder.github.io/8IaGL3ZNY/">
+        </link>
+        <updated>2018-04-06T13:42:03.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="构建和初始化">构建和初始化</h1>
+<ul>
+<li><code>__new__(cls, [...)</code></li>
+<li><code>__init__(self, [...)</code></li>
+<li><code>__del__(self)</code></li>
+</ul>
+<h1 id="比较运算符">比较运算符</h1>
+<ul>
+<li><code>__cmp__(self, other)</code>: 实现所有比较运算符</li>
+<li><code>__eq__(self, other)</code>: <code>==</code></li>
+<li><code>__ne__(self, other)</code>: <code>!=</code></li>
+<li><code>__lt__(self, other)</code>: <code>&lt;</code></li>
+<li><code>__gt__(self, other)</code>: <code>&gt;</code></li>
+<li><code>__le__(self, other)</code>: <code>&lt;=</code></li>
+<li><code>__ge__(self, other)</code>: <code>&gt;=</code></li>
+</ul>
+<h1 id="数值">数值</h1>
+<ul>
+<li><code>__pos__(self)</code>: <code>+some_object</code></li>
+<li><code>__neg__(self)</code>: <code>-some_object</code></li>
+<li><code>__abs__(self)</code>: <code>abs()</code></li>
+<li><code>__invert__(self)</code>: <code>~</code></li>
+<li><code>__round__(self, n)</code>: <code>round()</code></li>
+<li><code>__floor__(self)</code>: <code>math.floor()</code></li>
+<li><code>__ceil__(self)</code>: <code>math.ceil()</code></li>
+<li><code>__trunc__(self)</code>: <code>math.trunc()</code></li>
+</ul>
+<h1 id="算术运算符">算术运算符</h1>
+<ul>
+<li><code>__add__(self, other)</code>: 实现加法</li>
+<li><code>__sub__(self, other)</code>: 实现减法</li>
+<li><code>__mul__(self, other)</code>: 实现乘法</li>
+<li><code>__floordiv__(self, other)</code>: 使用<code>//</code>运算符实现整数除法</li>
+<li><code>__div__(self, other)</code>: 使用<code>/</code>运算符实现除法</li>
+<li><code>__truediv__(self, other)</code>: <code>from __future__ import division</code>有效</li>
+<li><code>__mod__(self, other)</code>: 使用<code>%</code>运算符实现模</li>
+<li><code>__divmod__(self, other)</code>: 使用<code>divmod()</code>内置函数实现长除法行为</li>
+<li><code>__pow__</code>: 使用<code>**</code>运算符实现指数的行为</li>
+<li><code>__lshift__(self, other)</code>: 使用<code>&lt;&lt;</code>运算符实现按位左移</li>
+<li><code>__rshift__(self, other)</code>: 使用<code>&gt;&gt;</code>运算符实现按位右移</li>
+<li><code>__and__(self, other)</code>: 按位实现并使用<code>&amp;</code>运算符</li>
+<li><code>__or__(self, other)</code>: 按位实现或使用<code>|</code>运算符</li>
+<li><code>__xor__(self, other)</code>: 使用<code>^</code>运算符实现按位异或</li>
+</ul>
+<h1 id="class">class</h1>
+<ul>
+<li><code>__str__(self)</code>: <code>str()</code></li>
+<li><code>__repr__(self)</code>: 产生大多数机器可读的输出</li>
+<li><code>__unicode__(self)</code></li>
+<li><code>__format__(self, formatstr)</code></li>
+<li><code>__hash__(self)</code></li>
+<li><code>__nonzero__(self)</code></li>
+<li><code>__dir__(self)</code></li>
+<li><code>__sizeof__(self)</code></li>
+</ul>
+<h1 id="控制属性访问">控制属性访问</h1>
+<ul>
+<li><code>__getattr__(self, name)</code></li>
+<li><code>__setattr__(self, name, value)</code></li>
+<li><code>__delattr__(self, name)</code></li>
+<li><code>__getattribute__(self, name)</code></li>
+</ul>
+<h1 id="自定义序列">自定义序列</h1>
+<ul>
+<li><code>__len__(self)</code></li>
+<li><code>__getitem__(self, key)</code></li>
+<li><code>__setitem__(self, key, value)</code></li>
+<li><code>__delitem__(self, key)</code></li>
+<li><code>__iter__(self)</code></li>
+<li><code>__reversed__(self)</code></li>
+<li><code>__contains__(self, item)</code></li>
+<li><code>__missing__(self, key)</code></li>
+</ul>
+<h1 id="反射">反射</h1>
+<ul>
+<li><code>__instancecheck__(self, instance)</code>: <code>isinstance(instance, class)</code></li>
+<li><code>__subclasscheck__(self, subclass)</code>: <code>issubclass(subclass, class)</code></li>
+</ul>
+<h1 id="可调用对象">可调用对象</h1>
+<ul>
+<li><code>__call__(self, [args...])</code></li>
+</ul>
+<h1 id="上下文管理">上下文管理</h1>
+<ul>
+<li><code>__enter__(self)</code></li>
+<li><code>__exit__(self, exception_type, exception_value, traceback)</code></li>
+</ul>
+<h1 id="描述符">描述符</h1>
+<ul>
+<li><code>__get__</code></li>
+<li><code>__set__</code></li>
+<li><code>__delete__</code></li>
+</ul>
+<h1 id="对象复制">对象复制</h1>
+<ul>
+<li><code>__copy__</code></li>
+<li><code>__deepcopy__</code></li>
+</ul>
 ]]></content>
     </entry>
     <entry>

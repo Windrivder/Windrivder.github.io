@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Python 描述符 | Halo</title>
+<title>Python 线程安全 | Halo</title>
 <meta name="description" content="愿你在冷铁卷刃前，得以窥见天光。" />
 <link rel="shortcut icon" href="https://Windrivder.github.io/favicon.ico?v=1587819636702">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,14 +73,14 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Python 描述符
+              Python 线程安全
             </h2>
             <div class="post-info">
               <span>
-                2018-04-05
+                2018-04-07
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
                 <a href="https://Windrivder.github.io/0mn1mpd9n/" class="post-tag">
@@ -89,39 +89,54 @@
               
             </div>
             
-              <img class="post-feature-image" src="https://images.unsplash.com/photo-1585455499250-d8ef2030d15e?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max" alt="">
+              <img class="post-feature-image" src="https://images.unsplash.com/photo-1586078977840-b9b55e97be80?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max" alt="">
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>Python 2.2 引进了 Python 描述符，同时还引进了一些新的样式类，描述符具有诸多优点，诸如：<strong>保护属性不受修改、属性类型检查和自动更新某个依赖属性的值等</strong>。</p>
-<p>实现描述符可通过两种方式：</p>
-<ul>
-<li>实现<code>__get__</code>，<code>__set__</code>，<code>__delete__</code>，描述符只读称为** 非数据描述符**，可读可写称为<strong>数据描述符</strong></li>
-<li>通过轻量级的数据描述符函数<code>property()</code>，其使用装饰器的模式，可以将类方法当成属性来访问</li>
-</ul>
-<h1 id="属性查找">属性查找</h1>
-<p>由于<code>__getattribute__</code>是实例查找属性的入口，查找优先级如下：</p>
-<ol>
-<li>类属性</li>
-<li>数据描述符</li>
-<li>实例属性</li>
-<li>非数据描述符</li>
-<li><code>__getattr__</code></li>
-</ol>
-<h1 id="魔术方法">魔术方法</h1>
-<ul>
-<li><code>__getattribute__</code>：该方法会被无条件调用，不管属性存不存在；一般情况下返回父类的同名方法来避免在方法中出现无限递归的情况</li>
-<li><code>__getattr__</code>：当访问的对象属性不存在时调用，如果通过正常途径访问到了属性，那么<code>__getattr__</code>不会被调用</li>
-<li><code>__getitem__</code>：类实例允许以<code>[]</code>形式调用</li>
-</ul>
+                <p>Python 解释器由于是非线程安全的，所以解释器从线程内访问 Python 对象时，会去获取一个全局的强制锁，这就是 Python 中著名的 <strong>GIL（global interpreter lock）</strong>。</p>
+<p>当多个线程同时进行，且共同修改同一个资源时，我们必须保证修改不会发生冲突，数据修改不会发生错误，也就是说，我们必须保证线程安全。</p>
+<p>由于 GIL 的加持，是不是就意味着 Python 中的多线程并发都是线程安全的呢？答案是否定。我们还需要理解另一个概念：<strong>原子操作（atomic operation）</strong>。</p>
+<p>原子操作，指不会被线程调度机制打断的操作，这种操作一旦开始，就一直运行到结束，中间不会切换到其他线程。</p>
+<p>类似于<code>num += 1</code> 语句，在多线程并发下，就不是线程安全的，因为它不是原子操作：</p>
+<pre><code class="language-python">from dis import dis
+
+a = 0
+
+def add():
+    global a
+    a = a + 1
+    
+dis(add)
+</code></pre>
+<p>执行结果如下：</p>
+<pre><code>  9           0 LOAD_GLOBAL              0 (a)
+              2 LOAD_CONST               1 (1)
+              4 BINARY_ADD
+              6 STORE_GLOBAL             0 (a)
+              8 LOAD_CONST               0 (None)
+             10 RETURN_VALUE
+</code></pre>
+<p>可以看到，Python 运行这段代码的步骤：<code>导入全局变量--&gt;导入常数--&gt;执行加法--&gt;存储变量...</code>。若在<code>BINARY_ADD</code>和<code>STORE_GLOBAL</code>之间切换了线程，那么就造成资源冲突了。</p>
+<p>那些操作是线程安全的呢，<a href="https://docs.python.org/3.5/faq/library.html#what-kinds-of-global-value-mutation-are-thread-safe">Python 文档</a>中罗列了一些，可以看下。</p>
+<pre><code class="language-python"># 线程安全
+L.append(x)
+L1.extend(L2)
+x = L[i]
+x = L.pop()
+L1[i:j] = L2
+L.sort()
+x = y
+x.field = y
+D[x] = y
+D1.update(D2)
+D.keys()
+</code></pre>
+<p>从中我们可以总结一下，如果一段程序本身就是原子操作，那么它在 Python 的运行环境中，自动实现了线程安全，也就不需要上锁了。</p>
+<p>值得注意的是，标准库中关于队列的实现，<code>Queue.Queue</code>内部实现<code>Condition</code>锁，主要用于线程之间的通信。而<code>collections.deque</code>和<code>list</code>是单纯存储数据的。</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li><a href="#%E5%B1%9E%E6%80%A7%E6%9F%A5%E6%89%BE">属性查找</a></li>
-<li><a href="#%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95">魔术方法</a></li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -130,9 +145,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://Windrivder.github.io/Fn2Lt73Yn/">
+            <a href="https://Windrivder.github.io/8IaGL3ZNY/">
               <h3 class="post-title">
-                Vim 配置
+                Python 魔术方法
               </h3>
             </a>
           </div>

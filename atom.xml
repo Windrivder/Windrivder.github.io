@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Windrivder.github.io</id>
     <title>Halo</title>
-    <updated>2020-04-25T12:19:04.129Z</updated>
+    <updated>2020-04-25T12:53:13.655Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Windrivder.github.io"/>
     <link rel="self" href="https://Windrivder.github.io/atom.xml"/>
@@ -80,6 +80,35 @@
 <p>未来，它一定会成为你离不开的伙伴</p>
 <p>尽情发挥你的才华吧！</p>
 <p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python 描述符]]></title>
+        <id>https://Windrivder.github.io/GePMqHwFT/</id>
+        <link href="https://Windrivder.github.io/GePMqHwFT/">
+        </link>
+        <updated>2018-04-05T12:23:14.000Z</updated>
+        <content type="html"><![CDATA[<p>Python 2.2 引进了 Python 描述符，同时还引进了一些新的样式类，描述符具有诸多优点，诸如：<strong>保护属性不受修改、属性类型检查和自动更新某个依赖属性的值等</strong>。</p>
+<p>实现描述符可通过两种方式：</p>
+<ul>
+<li>实现<code>__get__</code>，<code>__set__</code>，<code>__delete__</code>，描述符只读称为** 非数据描述符**，可读可写称为<strong>数据描述符</strong></li>
+<li>通过轻量级的数据描述符函数<code>property()</code>，其使用装饰器的模式，可以将类方法当成属性来访问</li>
+</ul>
+<h1 id="属性查找">属性查找</h1>
+<p>由于<code>__getattribute__</code>是实例查找属性的入口，查找优先级如下：</p>
+<ol>
+<li>类属性</li>
+<li>数据描述符</li>
+<li>实例属性</li>
+<li>非数据描述符</li>
+<li><code>__getattr__</code></li>
+</ol>
+<h1 id="魔术方法">魔术方法</h1>
+<ul>
+<li><code>__getattribute__</code>：该方法会被无条件调用，不管属性存不存在；一般情况下返回父类的同名方法来避免在方法中出现无限递归的情况</li>
+<li><code>__getattr__</code>：当访问的对象属性不存在时调用，如果通过正常途径访问到了属性，那么<code>__getattr__</code>不会被调用</li>
+<li><code>__getitem__</code>：类实例允许以<code>[]</code>形式调用</li>
+</ul>
 ]]></content>
     </entry>
     <entry>

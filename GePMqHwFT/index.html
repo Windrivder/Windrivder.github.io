@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | Halo</title>
+<title>Python 描述符 | Halo</title>
 <meta name="description" content="愿你在冷铁卷刃前，得以窥见天光。" />
 <link rel="shortcut icon" href="https://Windrivder.github.io/favicon.ico?v=1587817913489">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,55 +73,53 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello Gridea
+              Python 描述符
             </h2>
             <div class="post-info">
               <span>
-                2019-11-18
+                2018-04-05
               </span>
               <span>
-                2 min read
+                1 min read
               </span>
               
-                <a href="https://Windrivder.github.io/M-pYg4d-4/" class="post-tag">
-                  # Gridea
+                <a href="https://Windrivder.github.io/0mn1mpd9n/" class="post-tag">
+                  # Python
                 </a>
               
             </div>
             
-              <img class="post-feature-image" src="https://images.unsplash.com/photo-1572083115813-c6281088ae6a?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max" alt="">
+              <img class="post-feature-image" src="https://images.unsplash.com/photo-1585455499250-d8ef2030d15e?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max" alt="">
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                <p>Python 2.2 引进了 Python 描述符，同时还引进了一些新的样式类，描述符具有诸多优点，诸如：<strong>保护属性不受修改、属性类型检查和自动更新某个依赖属性的值等</strong>。</p>
+<p>实现描述符可通过两种方式：</p>
+<ul>
+<li>实现<code>__get__</code>，<code>__set__</code>，<code>__delete__</code>，描述符只读称为** 非数据描述符**，可读可写称为<strong>数据描述符</strong></li>
+<li>通过轻量级的数据描述符函数<code>property()</code>，其使用装饰器的模式，可以将类方法当成属性来访问</li>
+</ul>
+<h1 id="属性查找">属性查找</h1>
+<p>由于<code>__getattribute__</code>是实例查找属性的入口，查找优先级如下：</p>
+<ol>
+<li>类属性</li>
+<li>数据描述符</li>
+<li>实例属性</li>
+<li>非数据描述符</li>
+<li><code>__getattr__</code></li>
+</ol>
+<h1 id="魔术方法">魔术方法</h1>
+<ul>
+<li><code>__getattribute__</code>：该方法会被无条件调用，不管属性存不存在；一般情况下返回父类的同名方法来避免在方法中出现无限递归的情况</li>
+<li><code>__getattr__</code>：当访问的对象属性不存在时调用，如果通过正常途径访问到了属性，那么<code>__getattr__</code>不会被调用</li>
+<li><code>__getitem__</code>：类实例允许以<code>[]</code>形式调用</li>
+</ul>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
-</ul>
-</li>
+<li><a href="#%E5%B1%9E%E6%80%A7%E6%9F%A5%E6%89%BE">属性查找</a></li>
+<li><a href="#%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95">魔术方法</a></li>
 </ul>
 
               </div>
@@ -132,9 +130,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://Windrivder.github.io/GePMqHwFT/">
+            <a href="https://Windrivder.github.io/Fn2Lt73Yn/">
               <h3 class="post-title">
-                Python 描述符
+                Vim 配置
               </h3>
             </a>
           </div>
